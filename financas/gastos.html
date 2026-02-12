@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="shortcut icon" href="../media/money.png" type="image/x-icon">
+  <title>Finanças - Gastos Mensais</title>
+  <style>
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #f9f9fb;
+      color: #222;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1,
+    h2 {
+      font-size: 26px;
+      color: #3e276b;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #bca7e5;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .item {
+      background: #f4f2fa;
+      border: 1px solid #cfc6eb;
+      padding: 15px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      font-size: 15px;
+    }
+
+    .item:hover {
+      background: #ebe6f8;
+      box-shadow: 0 0 4px rgba(120, 78, 200, 0.2);
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 30px;
+      border: 1px solid #cfc6eb;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      text-align: left;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      padding: 10px;
+      border: 1px solid #b5a8d9;
+      border-radius: 4px;
+      font-size: 15px;
+      background-color: #fff;
+      color: #222;
+    }
+
+    input:focus {
+      outline: 1px solid #9370db;
+    }
+
+    button {
+      background-color: #f5f1ff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background-color: #e6defc;
+    }
+
+    a {
+      color: rgb(48, 15, 80);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #lista-gastos {
+      list-style: none;
+      margin-bottom: 20px;
+      padding: 0;
+    }
+
+    #lista-gastos li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #cfc6eb;
+      font-size: 15px;
+    }
+
+    .total {
+      font-size: 16px;
+      font-weight: bold;
+      color: #3e276b;
+      margin-top: 15px;
+    }
+
+    .excluir {
+      cursor: pointer;
+      color: #7d3c98;
+      font-size: 16px;
+      margin-left: 8px;
+    }
+
+    .excluir:hover {
+      color: #a865c9;
+    }
+
+    .voltar {
+      display: block;
+      text-align: center;
+      margin: 30px auto 10px;
+      background: #f4f2fa;
+      border: 1px solid #cfc6eb;
+      padding: 10px 25px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .voltar:hover {
+      background: #ebe6f8;
+    }
+  </style>
+</head>
+<body>
+    <header>
+    <h2>Gastos</h2>
+    <nav>
+      <a href="wish-list.html">Voltar ao índice</a> <br>
+      <a href="entradas.html">Entradas</a> <br>
+      <a href="wish-list.html">Wish List</a>
+    </nav>   
+  </header> <br>
+
+  <h1>Selecione o mês</h1>
+  <div id="app" class="grid"></div>
+
+  <script>
+    const app = document.getElementById('app');
+    const meses = [
+      "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+      "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    ];
+
+    function mostrarMeses() {
+      document.querySelector('h1').textContent = "Selecione o mês";
+      app.className = "grid";
+      app.innerHTML = "";
+      meses.forEach((mes, i) => {
+        const div = document.createElement('div');
+        div.className = "item";
+        div.textContent = mes;
+        div.onclick = () => mostrarAnos(i + 1);
+        app.appendChild(div);
+      });
+    }
+
+    function mostrarAnos(mesSelecionado) {
+      document.querySelector('h1').textContent = "Selecione o ano";
+      app.innerHTML = "";
+      const anoAtual = new Date().getFullYear();
+      for (let i = 0; i < 10; i++) {
+        const ano = anoAtual + i;
+        const div = document.createElement('div');
+        div.className = "item";
+        div.textContent = ano;
+        div.onclick = () => mostrarGastos(mesSelecionado, ano);
+        app.appendChild(div);
+      }
+    }
+
+    function mostrarGastos(mes, ano) {
+      document.querySelector('h1').textContent = `${meses[mes-1]} - ${ano}`;
+      app.className = "";
+      app.innerHTML = `
+        <main class="container">
+          <form id="form">
+            <input type="text" id="descricao" placeholder="Descrição" required />
+            <input type="number" id="valor" placeholder="Valor (R$)" step="0.01" krequired />
+            <input type="number" id="dia" placeholder="Dia (1-31)" min="1" max="31" required />
+            <button type="submit">Adicionar</button>
+          </form>
+          <ul id="lista-gastos"></ul>
+          <div class="total">Total: R$ <span id="total">0.00</span></div>
+          <div class="voltar" onclick="mostrarMeses()">⬅ Voltar</div>
+        </main>
+      `;
+
+      const form = document.getElementById('form');
+      const descricaoInput = document.getElementById('descricao');
+      const valorInput = document.getElementById('valor');
+      const diaInput = document.getElementById('dia');
+      const lista = document.getElementById('lista-gastos');
+      const totalSpan = document.getElementById('total');
+
+      const chave = `gastos_${mes}_${ano}`;
+      let gastos = JSON.parse(localStorage.getItem(chave)) || [];
+
+      function atualizarLista() {
+        lista.innerHTML = '';
+        let total = 0;
+        gastos.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.innerHTML = `${item.dia}/${mes} — ${item.descricao}: R$ ${item.valor.toFixed(2)}
+            <span class="excluir" data-index="${index}">🗑️</span>`;
+          lista.appendChild(li);
+          total += item.valor;
+        });
+        totalSpan.textContent = total.toFixed(2);
+      }
+
+      lista.addEventListener('click', function (e) {
+        if (e.target.classList.contains('excluir')) {
+          const index = e.target.getAttribute('data-index');
+          gastos.splice(index, 1);
+          localStorage.setItem(chave, JSON.stringify(gastos));
+          atualizarLista();
+        }
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const descricao = descricaoInput.value.trim();
+        const valor = parseFloat(valorInput.value);
+        const dia = parseInt(diaInput.value);
+        if (!descricao || isNaN(valor) || valor <= 0 || dia < 1 || dia > 31) return;
+        gastos.push({ descricao, valor, dia });
+        localStorage.setItem(chave, JSON.stringify(gastos));
+        atualizarLista();
+        descricaoInput.value = '';
+        valorInput.value = '';
+        diaInput.value = '';
+      });
+
+      atualizarLista();
+    }
+
+    mostrarMeses();
+  </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../media/money.png" type="image/x-icon">
+  <title>Entradas</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #f9f9fb;
+      color: #222;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #3e276b;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #bca7e5;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    nav {
+      margin-bottom: 40px;
+    }
+
+    a {
+      color: rgb(48, 15, 80);
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+      margin: 6px 0;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 30px;
+      border: 1px solid #cfc6eb;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: left;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input, button, select {
+      padding: 10px;
+      border: 1px solid #b5a8d9;
+      border-radius: 4px;
+      font-size: 15px;
+      background-color: #fff;
+      color: #222;
+    }
+
+    input:focus, select:focus {
+      outline: 1px solid #9370db;
+    }
+
+    button {
+      background-color: #f5f1ff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background-color: #e6defc;
+    }
+
+    th, .mes {
+      background-color: #e6defc;
+      font-weight: bold;
+    }
+
+    th, td {
+      padding: 5px;
+    }
+
+    .excluir {
+      cursor: pointer;
+      color: #7d3c98;
+      font-size: 16px;
+      margin-left: 8px;
+    }
+
+    .excluir:hover {
+      color: #a865c9;
+    }
+
+    .total {
+      font-size: 16px;
+      font-weight: bold;
+      color: #3e276b;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Entradas</h1>
+    <nav>
+      <a href="wish-list.html">Voltar ao índice</a>
+      <a href="gastos.html">Gastos</a>
+      <a href="#tabela">Ver Lista</a>
+    </nav>
+  </header>
+
+
+    <center>
+      <table border="1" cellpadding="8" cellspacing="0">
+      <tr>
+        <th>Mês</th>
+        <th>Entradas</th>
+      </tr>
+      <tr>
+        <td class="mes">Janeiro</td>
+        <td>
+          Dia 7: R$ 500,00 (Restante do salário) <br>
+          Dia 10: R$ 400,00 (Adiantamento da pensão) — faltam R$ 250, contando com a falta dos R$ 50 do 13 <br>
+          Dia 20: R$ 500,00 (Vale) <br>
+        </td>
+      </tr>
+      <tr>
+        <td class="mes">Fevereiro</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="mes">Março</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="mes">Abril</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="mes">Maio</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="mes">Junho</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="mes">Julho</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="mes">Agosto</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="mes">Setembro</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="mes">Outubro</td>
+        <td>R$ 530,00 <br><small>(faltou 70 — não cobrarei)</small></td>
+      </tr>
+      <tr>
+        <td class="mes">Novembro</td>
+        <td>
+          Dia 10: R$ 350,00 <br>
+          Dia 12: R$ 200,00 <br>
+          Dia 19: R$ 50,00 (Sandy) <br>
+        </td>
+      </tr>
+      <tr>
+        <td class="mes">Dezembro</td>
+        <td>
+          Dia 1: R$ 250,00 (13 Salário) <br>
+          Dia 4: R$ 200,00 (Vale) <br>
+          Dia 12: R$ 400,00 (Adiantamento da pensão) <br>
+          Dia 20: R$ 200,00 (Restante da pensão) <br>
+          Dia 23: R$ 100,00 (Venda do celular antigo) <br>
+          Dia 25: R$ 200,00 (Adiantamento do 13 Salário / Faltou R$ 50 - Cobrarei) <br>
+          Dia 26: R$ 300,00 (Vale) <br>
+        </td>
+      </tr>
+        </table>
+    </center>
+
+</body>
+</html>
